@@ -1,0 +1,53 @@
+Rust is comipled language
+
+
+Rust Installation -> "rustup" it is a cli tool  which manages versions of rust also add c comipler when installing rust
+
+cmd -> rustc -V or rustc --version
+
+cmd -> rustup update // update rust 
+cmd -> rustup self uninstall // uninstall rust from machine
+cmd -> rustup docs // this will gives a rust manual
+
+Hello World  -> some points to remember extenstion (.rs)
+
+fn main(){
+    println!("Hello World");
+}
+
+how to execute -> similar to c, cpp, java
+cmd -> rustc filename.rs
+cmd -> ./filename
+
+
+Note -> similar to c, cpp, java rust needs a main function to execute
+
+cmd -> rustfmt filename.rs // this is a tool to format/refactor code accordingily similar to prettier 
+
+
+
+Cargo -> It is a package manager
+cmd -> cargo new projectName // this will creates a project structure just like cra,vite
+
+
+toml{Toms Obvious Minimal Language} -> config file just like json, yaml
+there is {Cargo.toml} where are config and dependencies are present.
+
+
+## In rust package are known as "Crates"
+
+
+cmd -> cargo build // this will generate exec files
+we can run this file in "./target/debug/filename" //
+but this is very hactic to goto that dir and run
+
+cmd -> cargo run  // this manage two steps cargo build and run, auto defect wether there is change or not
+
+cargo build or ca run also automatcally generates a top level Cargo.lock file which manages all info of project like dependencies similar to package-lock.json
+
+cmd -> cargo check // this will check error
+
+cargo by default build debug files that's why store in ./target/debug dir, so when project is ready use 
+
+cmd -> cargo build --release // this is final code of project stores in "./target/release"
+but this process is slower than cargo build or cargo run because it generates optimized code for production, so in development environment use cargo build or cargo run // use cargo run 
