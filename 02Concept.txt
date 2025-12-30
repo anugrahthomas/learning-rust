@@ -1,0 +1,18 @@
+'use' is used to import modules, crates, functions etc from other files or libraries
+std -> it is standard library which comes with rust installation
+example ->
+use std::io; // importing io module from standard library for input output operations
+
+cmd: cargo add -> it is used to add dependencies to Cargo.toml file [library crates]
+cmd: cargo doc --open // this will open rust doc in browser
+
+Variables -> let used to create variables 
+variables are immutable in rust
+let a = 32; 
+but we can make them mutable by adding 'mut' keyword
+let mut a = 32;
+
+also we can make variable using const but this will never change, but we have to give type in case of const, in case of let it default gives a type i32
+const a: u8 = 32;
+
+const can be declared in any scope where local or global, but in case of let it is only local scope
