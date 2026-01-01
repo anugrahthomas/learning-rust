@@ -16,3 +16,30 @@ also we can make variable using const but this will never change, but we have to
 const a: u8 = 32;
 
 const can be declared in any scope where local or global, but in case of let it is only local scope
+
+there are different data types in rust
+1. Scalar types -> represents a single value
+  a. Integer types -> i8, i16, i32, i64, i128, isize (signed integers)
+                     u8, u16, u32, u64, u128, usize (unsigned integers)
+  b. Floating point types -> f32, f64
+  c. Boolean type -> bool (true or false)
+  d. Character type -> char (represents a single Unicode scalar value)
+2. Compound types -> represents multiple values
+    a. Tuple type -> can group multiple values of different types into a single compound type
+    b. Array type -> can group multiple values of the same type into a single compound type
+    c. Slice type -> dynamically sized view into a contiguous sequence of elements
+    d. Struct type -> custom data type that lets you name and package together multiple related values
+
+
+Shadowing -> we can declare a new variable with the same name as a previous variable, this is called shadowing
+eg: let x = 4;
+    let x = 3; // x is now 3
+
+Data Binding -> when we create a variable using let, we are binding a name to a value
+eg: let x = 5; // here x is bound to value 5
+
+Panicing -> when the program encounters an unrecoverable error, it will panic and terminate the program, accessing in debug mode, not in release mode
+eg: let a = [1, 2, 3];
+     println!("{}", a[5]); // this will cause panic at runtime
+    let b:u8 = 256; // this will cause panic at compile time as u8 can only hold values from 0 to 255
+
