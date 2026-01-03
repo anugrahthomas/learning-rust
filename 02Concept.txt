@@ -43,3 +43,17 @@ eg: let a = [1, 2, 3];
      println!("{}", a[5]); // this will cause panic at runtime
     let b:u8 = 256; // this will cause panic at compile time as u8 can only hold values from 0 to 255
 
+
+functions -> declared using fn keyword
+- we can create functions before or after main function
+- name convention is snake_case
+- parameters must have type specified
+- return type is specified after -> symbol
+*- functions is an expression in rust
+eg:
+fn add(a: i32, b: i32) -> i32 {
+    a + b // no need to use return keyword, last expression is returned, can also use return keyword with semicolon
+}
+
+statements -> are instructions that perform some action and do not return a value
+expressions -> are instructions that evaluate to a value
