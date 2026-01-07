@@ -1,0 +1,72 @@
+Ownership -> set of rules that govern how a Rust program manages memory.
+- most of languages use garabage collector to manage memory, some uses refrence, manual memory management
+- rust uses third approach called ownership with a set of rules that the compiler checks at compile time
+- memory is automatically cleaned up when it is no longer needed, without the need for a garbage collector
+
+// ownership works on heap
+Rules of Ownership:
+1. Each value in Rust has a variable that is called its owner.
+2. There can only be one owner at a time.
+3. When the owner goes out of scope, the value will be dropped.
+
+Stack and Heap
+- stack -> stores data with known, fixed size at compile time, data is stored in a last in first out (LIFO) order
+- heap -> stores data with unknown or variable size, runtime allocates memory for data on the heap, data is accessed via a pointer stored on the stack
+
+- the main idea rust ownership is to ensure memory safety without a garbage collector
+- the memory allocated at runtime but it is predetermined at compile time when the variable goes out of scope
+
+- rust uses a drop function to free memory when a variable goes out of scope
+- when owner goes out of scope, the drop function is called automatically to free the memory associated with the value
+- better than garabage collector as it avoids runtime overhead and ensures memory is freed as soon as it is no longer needed
+
+
+double free error -> occurs when a program attempts to free the same memory location more than once, leading to undefined behavior and potential security vulnerabilities
+eg: let s1 = String::from("hello");
+    let s2 = s1; // s1 is moved to s2, s1 is no longer valid
+    println!("{}", s1); // this will cause compile time error as s1 is no longer valid
+
+String is complex data type stored on heap
+- when String created on heap
+1. a pointer is created on stack points to heap memory location
+2. eg: let s = String::from("hello");
+    - s is container containing (pointer, length, capacity)
+3. on heap memory is allocated to store the actual string data "hello"
+    - heap memory containing "hello"
+- rust move the pointer from s1 to s2, s1 is no longer valid
+- because copying whole data from s1 to create new s2 is expensive at runtime, so rust do not automatically create deep copy of data
+- but we can create deep copy using clone method, manually
+eg: let s1 = String::from("hello");
+    let s2 = s1.clone(); // s2 is deep copy of s1
+
+
+- so rust do not create a deep copy of data when assigning one variable to another
+- make rust more memory safe and efficient
+
+ownership and Functions
+- when passing variable to function, ownership is moved to function parameter
+eg: fn main() {
+    let s = String::from("hello");
+    takes_ownership(s); // s's value moves into the function
+    // s is no longer valid here
+}
+fn takes_ownership(some_string: String) {
+    println!("{}", some_string);
+} // some_string goes out of scope and is dropped here
+- to retain ownership after function call, we can return the value from function
+eg: fn main() {
+    let s1 = gives_ownership(); // gives_ownership moves its return value into s1
+    let s2 = String::from("hello");
+    let s3 = takes_and_gives_back(s2); // s2 is moved into takes_and_gives_back, which also moves its return value into s3
+}
+fn gives_ownership() -> String {
+    let some_string = String::from("hello");
+    some_string // return value moves out to the caller
+}  
+fn takes_and_gives_back(a_string: String) -> String {
+    a_string // return value moves out to the caller
+}
+
+- this ownership model ensures memory safety but make it easy task so much difficult to manage ownership manually
+- so rust provide refrencing and borrowing to allow multiple parts of code to access data without taking ownership
+
